@@ -12,6 +12,12 @@ import { EmployeeService } from 'src/app/services/employee.service';
 export class EditComponent implements OnInit {
   id: number | undefined;
   header: string = '';
+  employee: Employee = {
+    id: 0,
+    name: '',
+    email: '',
+    phone: 0,
+  };
 
   constructor(
     private router: Router,
@@ -22,6 +28,10 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     this.header = this.id === 0 ? 'Add an Employee' : 'Edit Employee Details';
+
+    // if (this.id != 0) {
+    //   this.employee = this.employeeService.onGetEmployee(this.id);
+    // }
   }
 
   onSubmit(form: NgForm) {
@@ -32,7 +42,13 @@ export class EditComponent implements OnInit {
       phone: form.value.phone,
     };
 
-    this.employeeService.onAdd(employee);
+    if (this.id === 0) {
+      this.employeeService.onAdd(employee);
+    }
+    // else {
+    //   this.employeeService.onUpdate(employee);
+    // }
+
     this.router.navigateByUrl('');
   }
 }

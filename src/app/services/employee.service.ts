@@ -26,9 +26,20 @@ export class EmployeeService {
     return this.employees;
   }
 
+  onGetEmployee(id: Number) {
+    return this.employees.find((x) => x.id === id);
+  }
+
   onAdd(employee: Employee) {
     this.employees.push(employee);
   }
+
+  // onUpdate(employee: Employee) {
+  //   let oldEmployee = this.employees.find((x) => x.id === employee.id);
+  //   oldEmployee.name = employee.name;
+  //   oldEmployee.email = employee.email;
+  //   oldEmployee.phone = employee.phone;
+  // }
 
   // onDelete(id: Number) {
   //   let employee = this.employees.find((x) => x.id === id);
